@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.img-header {
+    width: 100px;
+    height: 100px;
+}
+
+.img-main {
+    width: auto;
+    height: 300px;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-collapsed {
+    color: white;
+}
