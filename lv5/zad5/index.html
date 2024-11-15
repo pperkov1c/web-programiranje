@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<style>
+	.drop {
+	  width: 150px;
+	  height: 150px;
+	  border: 1px solid black;
+	  text-align: center;
+	}
+	.drag {
+	  width:100px; 
+	  height:100px; 
+	  border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+    <h1>Najgluplja igra ikada!</h1>
+	<table>
+      <tr>
+          <td><div class="drop" id="drop_black" name="Crno">Crno</div></td>
+          <td><div class="drop" id="drop_red" name="Crveno">Crveno</div></td>
+     </tr>
+    </table>
+	<div>
+	  <div class="drag" id="drag_red" style="background-color:red;"></div>
+	  <div class="drag" id="drag_black" style="background-color:black;"></div>
+	</div>
+	<script>
+	$(document).ready(function(){
+		$(function() {
+		  var $dragElem_B = $("#drag_black"),
+			  $dropZone_B = $("#drop_black");  //$dropZone_B = $('[name="Crno"]');
+
+		  $dragElem_B.draggable({
+			revert: "invalid",
+			helper: "clone",
+			cursor: "move"
+		  });
+
+		  $dropZone_B.droppable({
+			accept: $dragElem_B,
+			drop: function(event, ui) {
+			  deleteImage(ui.draggable, this);
+			  $(this).droppable("disable");
+			}
+		  });
+
+		  function deleteImage($item, $id) {
+			$item.fadeOut(function() {
+			  $item.appendTo($id).fadeIn();
+			});
+		  }
+		});
+		$(function() {
+		  var $dragElem_R = $("#drag_red"),
+			  $dropZone_R = $("#drop_red");
+
+		  $dragElem_R.draggable({
+			revert: "invalid",
+			helper: "clone",
+			cursor: "move"
+		  });
+
+		  $dropZone_R.droppable({
+			accept: $dragElem_R,
+			drop: function(event, ui) {
+			  deleteImage(ui.draggable, this);
+			  $(this).droppable("disable");
+			}
+		  });
+
+		  function deleteImage($item, $id) {
+			$item.fadeOut(function() {
+			  $item.appendTo($id).fadeIn();
+			});
+		  }
+		});
+	});    
+	</script>      
+</body>
+</html>

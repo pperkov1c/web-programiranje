@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>JSON</h2>
+
+    <script>
+        dohvatiJSON("primjer.json");
+
+        async function dohvatiJSON(file) {
+            let objektFetcha = await fetch(file);
+            let objektIzJSON = await objektFetcha.json();
+            console.log(objektIzJSON);
+
+            promijeniJSON(objektIzJSON);
+        }
+
+        function promijeniJSON(data) {
+            data[1].ime = "Petra";
+            data[1].godine = 21;
+            data[1].redStudent = true;
+            data[1].najdraziKolegij = ["MAT", "OET"];
+
+            spremiJSON(data)
+        }
+
+        function spremiJSON(data) {
+            let lokalniJSON = JSON.stringify(data)
+            localStorage.setItem("testJSON", lokalniJSON); //rezultira datotekom testJSON.json
+
+            let preuzetiLokalniJSON = localStorage.getItem("testJSON"); // čitanje iz json
+            let objektIzJSON2 = JSON.parse(preuzetiLokalniJSON);
+            console.log(objektIzJSON2);
+        }
+    </script>
+
+</body>
+
+</html>
